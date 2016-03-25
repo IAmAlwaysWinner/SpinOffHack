@@ -1,0 +1,1 @@
+This repo is for SpinOffHack GiveMeAQuest android app.
