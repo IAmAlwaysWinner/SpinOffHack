@@ -4,4 +4,8 @@
     <string name="log_in_button">Log in</string>
     <string name="room_name_hint">New room</string>
     <string name="create_room_button_text">Create</string>
+    <string name="choice_role">Your role: </string>
+    <string name="choice_text_view">Make your choice</string>
+    <string name="role_text_view_role_example">Mafia member</string>
+    <string name="doctor_text_view">So Heal, Much Doctor</string>
 </resources>

@@ -57,7 +57,7 @@ public class RoomsListFragment extends Fragment {
     AdapterView.OnItemClickListener onRoomClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            MainActivity.socket.emit("join room", ((TextView)(view.findViewById(R.id.rooms_list_item))).getText());
+        MainActivity.socket.emit("join room", ((TextView)(view.findViewById(R.id.rooms_list_item))).getText());
         }
     };
 }

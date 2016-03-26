@@ -5,3 +5,7 @@ This repo is for SpinOffHack GiveMeAQuest android app.
 Notification от приложения, использование статистики с указываением точности совпадения людей.
 
 Дополнения к мафии:
+
+
+Дополнение к вк карте:
+

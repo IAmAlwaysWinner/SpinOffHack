@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/imageView"
-        android:layout_weight="1"/>
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:gravity="center">
 
     <EditText
         android:layout_width="wrap_content"
+        android:ems="10"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/nickname_edit"
-        android:ems="10"
+        android:hint="@string/nickname_edit"
         android:id="@+id/edit_login"
         android:layout_gravity="center_horizontal"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textSize="@dimen/regular_text_view_text_size" />
 
     <Button
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/log_in_button"
+        android:ems="10"
         android:id="@+id/login_button"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/regular_button_text_size"/>
 </LinearLayout>
