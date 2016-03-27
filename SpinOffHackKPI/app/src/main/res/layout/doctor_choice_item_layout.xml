@@ -4,13 +4,13 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:textSize="@dimen/list_item_text_size"
-        android:textColor="@android:color/background_dark"
-        android:id="@+id/choice_list_name" />
+    android:id="@+id/doctor_choice_list_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:text="Large Text"
+    android:textColor="@android:color/black"
+    android:textAlignment="center"
+    android:textSize="@dimen/list_item_text_size" />
 
 </LinearLayout>

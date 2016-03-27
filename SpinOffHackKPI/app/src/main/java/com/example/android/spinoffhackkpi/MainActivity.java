@@ -8,6 +8,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.spinoffhackkpi.serviceClasses.Fragments.CherifAcceptFragment;
+import com.example.android.spinoffhackkpi.serviceClasses.Fragments.CherifChoiceFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.DoctorChoiceFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.LoginFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.MafiaChoiceFragment;
@@ -15,6 +17,7 @@ import com.example.android.spinoffhackkpi.serviceClasses.Fragments.RoleViewFragm
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.RoomFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.RoomsListFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.SleepFragment;
+import com.example.android.spinoffhackkpi.serviceClasses.Fragments.WhoreChoiceFragment;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                             ft = getFragmentManager().beginTransaction();
                             ft.replace(R.id.fragmentFrame, roomsListFragment);
                             ft.commit();
-                        } catch (JSONException e) {
+                        } catch (Throwable e) {
                             return;
                         }
                     }
@@ -106,9 +109,9 @@ public class MainActivity extends AppCompatActivity {
                     ft = getFragmentManager().beginTransaction();
                     ft.replace(R.id.fragmentFrame, roomFragment);
                     ft.commit();
-                    getFragmentManager().executePendingTransactions();
                     String roomName;
                     roomName = (String) args[0];
+                    getFragmentManager().executePendingTransactions();
                     ((TextView) roomFragment.rootView.findViewById(R.id.room_name_text_view)).setText(roomName);
                 }
             });
@@ -238,14 +241,14 @@ public class MainActivity extends AppCompatActivity {
                         ft = getFragmentManager().beginTransaction();
                         ft.replace(R.id.fragmentFrame, doctorChoiceFragment);
                         ft.commit();
-                        getFragmentManager().executePendingTransactions();
                         JSONObject jsonObj = new JSONObject("{data:" + args[0] + "}");
                         JSONArray playersToHeal = jsonObj.getJSONArray("data");
-                        MafiaChoiceFragment.mafiaChoicesListAdapter.clear();
+                        getFragmentManager().executePendingTransactions();
+                        doctorChoiceFragment.doctorChoicesListAdapter.clear();
                         for (int i = 0; i < playersToHeal.length(); i++) {
                             JSONObject playerToHeal = playersToHeal.getJSONObject(i);
                             String name = playerToHeal.getString("nickname");
-                            DoctorChoiceFragment.doctorChoicesListAdapter.add(name);
+                            doctorChoiceFragment.doctorChoicesListAdapter.add(name);
                         }
 
                     } catch (JSONException e) {
@@ -253,6 +256,131 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
+            }
+        });
+
+        socket.on("doctor success", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SleepFragment sleepFragment = new SleepFragment();
+                        ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.fragmentFrame, sleepFragment);
+                        ft.commit();
+                        getFragmentManager().executePendingTransactions();
+                    }
+                });
+            }
+        });
+
+        socket.on("sheriff begin", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            CherifChoiceFragment cherifChoiceFragment = new CherifChoiceFragment();
+                            ft = getFragmentManager().beginTransaction();
+                            ft.replace(R.id.fragmentFrame, cherifChoiceFragment);
+                            ft.commit();
+                            JSONObject jsonObj = new JSONObject("{data:" + args[0] + "}");
+                            JSONArray playersToInspect = jsonObj.getJSONArray("data");
+                            getFragmentManager().executePendingTransactions();
+                            cherifChoiceFragment.cherifChoiceListAdapter.clear();
+                            for (int i = 0; i < playersToInspect.length(); i++) {
+                                JSONObject playerToInspect = playersToInspect.getJSONObject(i);
+                                String name = playerToInspect.getString("nickname");
+                                cherifChoiceFragment.cherifChoiceListAdapter.add(name);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
+
+        socket.on("sheriff result", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        CherifAcceptFragment cherifAcceptFragment = new CherifAcceptFragment();
+                        ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.fragmentFrame, cherifAcceptFragment);
+                        ft.commit();
+                        String resultText = (String) args[0];
+                        getFragmentManager().executePendingTransactions();
+                        ((TextView)(cherifAcceptFragment.rootView.findViewById(R.id.cherif_answer_text_view))).setText(resultText);
+                    }
+                });
+            }
+        });
+
+        socket.on("sheriff success", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SleepFragment sleepFragment = new SleepFragment();
+                        ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.fragmentFrame, sleepFragment);
+                        ft.commit();
+                        getFragmentManager().executePendingTransactions();
+                    }
+                });
+            }
+        });
+
+        socket.on("quean begin", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+            MainActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        WhoreChoiceFragment whoreChoiceFragment = new WhoreChoiceFragment();
+                        ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.fragmentFrame, whoreChoiceFragment);
+                        ft.commit();
+                        JSONObject jsonObj = new JSONObject("{data:" + args[0] + "}");
+                        JSONArray playersToPutAlibiOn = jsonObj.getJSONArray("data");
+                        getFragmentManager().executePendingTransactions();
+                        whoreChoiceFragment.whoreChoicesListAdapter.clear();
+                        for (int i = 0; i < playersToPutAlibiOn.length(); i++) {
+                            JSONObject playerToPutAlibiOn = playersToPutAlibiOn.getJSONObject(i);
+                            String name = playerToPutAlibiOn.getString("nickname");
+                            whoreChoiceFragment.whoreChoicesListAdapter.add(name);
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            }
+        });
+
+
+        socket.on("quean success", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        SleepFragment sleepFragment = new SleepFragment();
+                        ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.fragmentFrame, sleepFragment);
+                        ft.commit();
+                        getFragmentManager().executePendingTransactions();
+                    }
+                });
             }
         });
 

@@ -15,20 +15,17 @@ import android.widget.TextView;
 import com.example.android.spinoffhackkpi.MainActivity;
 import com.example.android.spinoffhackkpi.R;
 
-/**
- * Created by Anton on 26.03.2016.
- */
 public class DoctorChoiceFragment extends Fragment {
-    public static ArrayAdapter<String> doctorChoicesListAdapter;
+    public ArrayAdapter<String> doctorChoicesListAdapter;
     public View rootView;
-    ListView choiceListView;
+    public static ListView choiceListView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView =  inflater.inflate(R.layout.mafia_choice_fragment, null);
+        rootView =  inflater.inflate(R.layout.doctor_choice_fragment, null);
+        choiceListView = (ListView) rootView.findViewById(R.id.doctor_choice_list);
 
-        choiceListView = (ListView) rootView.findViewById(R.id.choice_list);
-        doctorChoicesListAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.doctor_choice_item_layout, R.id.choice_list_name);
+        doctorChoicesListAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.doctor_choice_item_layout, R.id.doctor_choice_list_name);
         choiceListView.setAdapter(doctorChoicesListAdapter);
         choiceListView.setOnItemClickListener(doctorHealItemClick);
         return rootView;
@@ -37,7 +34,7 @@ public class DoctorChoiceFragment extends Fragment {
     AdapterView.OnItemClickListener doctorHealItemClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            MainActivity.socket.emit("doctor vote", ((TextView) (view.findViewById(R.id.choice_list_name))).getText());
+            MainActivity.socket.emit("doctor vote", ((TextView) (view.findViewById(R.id.doctor_choice_list_name))).getText());
         }
     };
 }

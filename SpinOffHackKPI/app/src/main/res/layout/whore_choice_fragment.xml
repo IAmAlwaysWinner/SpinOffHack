@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/doctor_text_view"
+            android:text="@string/whore_role_view"
             android:id="@+id/role_text_view_role"
             android:textAlignment="center"
             android:textSize="@dimen/regular_text_view_text_size" />
@@ -41,6 +41,6 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/doctor_choice_list"/>
+        android:id="@+id/whore_choice_list"/>
 
 </LinearLayout>
