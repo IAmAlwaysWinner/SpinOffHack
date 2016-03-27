@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.CherifAcceptFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.CherifChoiceFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.DoctorChoiceFragment;
+import com.example.android.spinoffhackkpi.serviceClasses.Fragments.KickVoteFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.LoginFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.MafiaChoiceFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.RoleViewFragment;
@@ -395,6 +396,35 @@ public class MainActivity extends AppCompatActivity {
                         ft.replace(R.id.fragmentFrame, sleepFragment);
                         ft.commit();
                         getFragmentManager().executePendingTransactions();
+                    }
+                });
+            }
+        });
+
+        socket.on("arrest begin", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            KickVoteFragment kickVoteFragment = new KickVoteFragment();
+                            ft = getFragmentManager().beginTransaction();
+                            ft.replace(R.id.fragmentFrame, kickVoteFragment);
+                            ft.commit();
+                            getFragmentManager().executePendingTransactions();
+                            JSONObject jsonObj = new JSONObject("{data:" + args[0] + "}");
+                            JSONArray players = jsonObj.getJSONArray("data");
+                            KickVoteFragment.kickChoicesListAdapter.clear();
+                            for (int i = 0; i < players.length(); i++) {
+                                JSONObject player = players.getJSONObject(i);
+                                String name = player.getString("nickname");
+                                KickVoteFragment.kickChoicesListAdapter.add(name);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
             }

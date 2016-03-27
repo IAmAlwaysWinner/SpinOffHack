@@ -2,16 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp">
+    android:background="@color/regular_backgroun_color">
 
     <TextView
+        android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Default Room Name"
         android:id="@+id/room_name_text_view"
         android:textSize="@dimen/regular_text_view_text_size"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="8dp"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
