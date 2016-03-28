@@ -5,3 +5,7 @@
 /.idea/libraries
 .DS_Store
 /build
+/app/build/tmp
+/app/build/intermediates
+/app/build/generated
+/app/build/outputs/logs
