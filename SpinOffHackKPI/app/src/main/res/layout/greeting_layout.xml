@@ -17,7 +17,7 @@
         android:layout_gravity="center_horizontal"
         android:textSize="@dimen/regular_button_text_size"
         android:textAllCaps="false"
-        android:background="#505050"/>
+        android:background="@color/regular_button_color"/>
 
     <EditText
         android:textCursorDrawable="@null"
@@ -41,6 +41,18 @@
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="16sp"
         android:gravity="end"
         android:text="Made by Give Me A Quest team (2016)"/>
+
+    <TextView
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/cherif_accept_button_text_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAlignment="center"
+        android:text="Dev Mash Mafia"
+        android:id="@+id/textView" />
 </RelativeLayout>

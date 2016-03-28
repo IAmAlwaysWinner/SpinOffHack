@@ -11,4 +11,5 @@
     <string name="cherif_role_text_view">Trust and Obey (Sheriff)</string>
     <string name="cherif_accept_button_text">Got it</string>
     <string name="whore_role_view">Much Hot, So Sexy</string>
+    <string name="game_over_text_view">Game Over</string>
 </resources>

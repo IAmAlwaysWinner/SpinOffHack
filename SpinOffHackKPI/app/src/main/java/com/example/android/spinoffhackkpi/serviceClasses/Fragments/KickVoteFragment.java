@@ -33,7 +33,7 @@ public class KickVoteFragment extends Fragment {
     AdapterView.OnItemClickListener arrestClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            MainActivity.socket.emit("arrest vote", ((TextView) (view.findViewById(R.id.arrest_choice_list_name))).getText());
+            MainActivity.socket.emit(" vote", ((TextView) (view.findViewById(R.id.arrest_choice_list_name))).getText());
         }
     };
 }

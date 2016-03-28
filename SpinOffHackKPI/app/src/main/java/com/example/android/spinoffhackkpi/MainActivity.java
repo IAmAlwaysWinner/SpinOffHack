@@ -2,15 +2,18 @@ package com.example.android.spinoffhackkpi;
 
 
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.CherifAcceptFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.CherifChoiceFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.DoctorChoiceFragment;
+import com.example.android.spinoffhackkpi.serviceClasses.Fragments.GameOverFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.KickVoteFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.LoginFragment;
 import com.example.android.spinoffhackkpi.serviceClasses.Fragments.MafiaChoiceFragment;
@@ -91,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
                             String name = room.getString("name");
                             RoomsListFragment.roomsListAdapter.add(name);
                         }
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -394,6 +396,22 @@ public class MainActivity extends AppCompatActivity {
                         SleepFragment sleepFragment = new SleepFragment();
                         ft = getFragmentManager().beginTransaction();
                         ft.replace(R.id.fragmentFrame, sleepFragment);
+                        ft.commit();
+                        getFragmentManager().executePendingTransactions();
+                    }
+                });
+            }
+        });
+
+        socket.on("game over", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        GameOverFragment gameOverFragment = new GameOverFragment();
+                        ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.fragmentFrame, gameOverFragment);
                         ft.commit();
                         getFragmentManager().executePendingTransactions();
                     }
