@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_centerHorizontal="true"
+    android:background="@color/regular_backgroun_color">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/cherif_answer_text_view"
+        android:textSize="52sp"/>
+
+    <Button
+        android:typeface="serif"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:id="@+id/cherif_accept_button"
+        android:textAllCaps="false"
+        android:text="@string/cherif_accept_button_text"
+        android:textSize="@dimen/cherif_accept_button_text_size"
+        android:background="@color/regular_button_color"/>
+</LinearLayout>
